@@ -1,0 +1,16 @@
+# Docker Volume Folders
+jenkins-master/volume_data
+jenkins-nginx/volume_data
+
+# Logrotate Folders
+jenkins-master/config/logrotate
+jenkins-nginx/config/logrotate
+
+# Git Ignore File
+.gitignore
+
+# Git Folder
+.git
+
+# MD Files
+*.md
