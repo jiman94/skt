@@ -1,4 +1,4 @@
-rootProject.name = 'cqrs-redis'
+rootProject.name = 'cqrs-redis-product-api'
 include 'core'
 include 'member'
 include 'product'
