@@ -1,0 +1,260 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Website CSS style -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<!-- Website Font style -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="css/bootstrapValidator.min.css">
+
+	<link rel="stylesheet" href="css/mypage.css">
+
+	<!-- Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+	<title>My page</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Jace's SHOP</a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="http://product.pilot.com:30001/products?type=createProduct">상품등록</a>
+				</li>
+				<li>
+					<a href="http://product.pilot.com:30001/products">상품목록</a>
+				</li>
+				<li class="active">
+					<a href="http://member.pilot.com:10001/mypage">마이페이지</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/logout">로그아웃</a></li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container -->
+</nav>
+
+<div class="container">
+	<div class="row">
+		<!-- tabs left -->
+		<div class="tabbable tabs-left">
+			<ul class="nav nav-tabs">
+				<li class="active"><a id="dev-order-list-link" href="#order-list" data-toggle="tab">주문목록</a></li>
+				<li><a id="dev-profile-link" href="#profile" data-toggle="tab">회원정보</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane col-md-10 active" id="order-list"></div>
+				<div class="tab-pane col-md-10" id="profile">
+					<form id="profileForm" class="form-horizontal" role="form" method="post" data-toggle="validator"></form>
+				</div>
+			</div>
+		</div>
+		<!-- /tabs -->
+	</div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.tmpl.min.js"></script>
+<script src="js/validator.min.js"></script>
+
+<script id="order-list-template" type="text/x-jquery-tmpl">
+
+<div class="row">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<span class="">주문번호</span>${orderId}
+	</div>
+	<div class="panel-body">
+		<table class="table table-hover">
+			<thead>
+			<tr>
+				<th>상품</th>
+				<th>수량</th>
+				<th class="text-center">단가</th>
+				<th class="text-center">상품금액</th>
+			</tr>
+			</thead>
+			<tbody>
+			{{each(i, orderItem)  orderItems}}
+				<tr class="cart-item">
+					<td class="col-sm-8 col-md-6">
+						<div class="media">
+							<a class="thumbnail pull-left" href="#">
+								<img class="media-object" src="${orderItem.product.imagePath}" style="width: 72px; height: 72px;">
+							</a>
+							<div class="media-body">
+								<h4 class="media-heading"><a href="#">${orderItem.product.name}</a></h4>
+							</div>
+						</div>
+					</td>
+					<td class="col-sm-1 col-md-1" style="text-align: center">
+					${orderItem.quantity}
+					</td>
+					<td class="col-sm-1 col-md-1 text-center">￦<strong>${orderItem.product.formatPrice}</strong></td>
+					<td class="col-sm-1 col-md-1 text-center">￦<strong>${orderItem.formatProductPrice}</strong></td>
+				</tr>
+			{{/each}}
+			<tr>
+				<td>   </td>
+				<td>   </td>
+				<td><h4>주문금액</h4></td>
+				<td class="text-right"><h4>￦<strong id="totalOrderPrice">${formatTotalOrderPrice}</strong></h4></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+
+</script>
+
+<script id="profile-template" type="text/x-handlebars-template">
+	<div class="form-group">
+		<label for="id" class="col-sm-3 control-label">Id</label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="id" name="id" value="${id}" readonly="reaonly">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="name" class="col-sm-3 control-label">Name</label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="name" name="name" value="${name}" placeholder="Enter your Username"
+				   data-required-error="이름을 입력해 주세요" required>
+			<div class="help-block with-errors"></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="email" class="col-sm-3 control-label">Email</label>
+		<div class="col-sm-9">
+			<input type="email" class="form-control" id="email" name="email" value="${email}" placeholder="Enter your Email"
+				   data-required-error="이메일을 입력해 주세요"
+				   data-pattern-error="이메일 형식이 올바르지 않습니다" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  required>
+			<div class="help-block with-errors"></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="address" class="col-sm-3 control-label">Address</label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="address" name="address" value="${address}"placeholder="Enter your Address"
+				   data-required-error="주소를 입력해 주세요" required>
+			<div class="help-block with-errors"></div>
+		</div>
+	</div>
+	<div class="form-group last">
+		<div class="col-sm-offset-3 col-sm-9">
+			<button type="button" id="dev-profile-change-button" class="btn btn-success btn-sm">저장</button>
+		</div>
+	</div>
+</script>
+<script>
+	$(document).ready(function () {
+
+		function getOrderList() {
+			$.ajax({
+				url: '/orders',
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				type: 'GET',
+				success: function (data) {
+					console.log(JSON.stringify(data));
+					var $orderListObj = $('#order-list');
+					$orderListObj.html('');
+					$('#order-list-template').tmpl(data).appendTo($orderListObj);
+				},
+				error: function (response, status, error) {
+					console.log("code : " + response.status + "\n" + "message:" + response.responseText + "\n" + "error:" + error);
+				}
+			});
+		}
+
+		function getProfile() {
+			$.ajax({
+				url: '/profile',
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				type: 'GET',
+				success: function (data) {
+					console.log(JSON.stringify(data));
+					var $profileFormObj = $('#profileForm');
+					$profileFormObj.html('');
+					$('#profile-template').tmpl(data).appendTo($profileFormObj);
+				},
+				error: function (response, status, error) {
+					console.log("code:" + response.status + "\n" + "message:" + response.responseText + "\n" + "error:" + error);
+				}
+			});
+		}
+
+
+		$('#dev-order-list-link').click(function () {
+			getOrderList();
+		});
+
+		$('#dev-profile-link').on('click', function () {
+			getProfile();
+		});
+
+		$('#profileForm').on('click', '#dev-profile-change-button', function () {
+			console.log('clicked button');
+			var $profileForm = $('#profileForm');
+			$profileForm.validator('update');
+			$profileForm.submit();
+		});
+
+		$('#profileForm').validator().on('submit', function (e) {
+			console.log('aaa');
+			if (!e.isDefaultPrevented()) {
+				console.log('validation form ');
+				var formData = {
+					"name": $("#name").val(),
+					"email": $("#email").val(),
+					"address": $("#address").val(),
+				}
+
+				var memberId = $('#id').val();
+				$.ajax({
+					url: '/api/members/' + memberId + '?type=changeProfile',
+					data: JSON.stringify(formData),
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'json',
+					type: 'POST',
+					success: function (data) {
+						alert('정상적으로 변경되었습니다');
+					},
+					error: function (response, status, error) {
+						console.log("code:" + response.status + "\n" + "message:" + response.responseText + "\n" + "error:" + error);
+					}
+				});
+
+			}
+			return false;
+		});
+
+
+		getOrderList();
+	});
+</script>
+
+</body>
+</html>

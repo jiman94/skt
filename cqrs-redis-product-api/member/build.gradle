@@ -1,0 +1,24 @@
+
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+
+
+dependencies {
+    compile project(':core')
+    compile project(':member-domain')
+    compile project(':order-domain')
+    
+	// thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.4.1'
+    compile('net.sourceforge.nekohtml:nekohtml:1.9.21')
+
+    
+}

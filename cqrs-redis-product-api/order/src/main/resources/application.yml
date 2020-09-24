@@ -1,0 +1,12 @@
+server:
+  port: 20001
+---  
+kafka:
+  topic:
+    product: product-event-topic
+    order: order-event-topic    
+    member: member-event-topic
+---    
+kafka:
+  bootstrap:
+    servers: localhost:9092

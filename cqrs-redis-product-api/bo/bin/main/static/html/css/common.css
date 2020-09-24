@@ -1,0 +1,232 @@
+@media only screen and (min-width:512px) and (max-width:1024px)
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+* {
+	-webkit-text-size-adjust:none; /* mobile */
+	/* max-width:100%; <- ckeditor ��üȭ��� �浹���� ������ */ 
+	margin: 0;
+	padding: 0;
+	font-family:'Nanum Gothic', sans-serif ;
+}
+
+body {
+	vertical-align: middle;
+	
+	scrollbar-face-color: #f9f9f9;
+    scrollbar-shadow-color: #B99A67;
+    scrollbar-highlight-color: #B99A67;
+    scrollbar-3dlight-color: #f9f9f9;
+    scrollbar-darkshadow-color: #f9f9f9;
+    scrollbar-track-color: #f9f9f9;
+    scrollbar-arrow-color: #B99A67;
+}
+
+@media print {
+	.after-page-divide {
+		page-break-after: always;	
+	}
+	
+	.before-page-divide {
+		page-break-before: always;	
+	}
+	
+	.no-print-page {
+		display:none;
+	}
+
+	input, textarea, select {
+		border: 0 !important;
+		border-style: none !important;
+	}
+}
+
+table {border-spacing: 0px; }
+
+/* default */
+
+body, td, th, div 	{
+					border:0px solid #d7d7d7;
+					color:#666666;
+					font-size:15px;
+					text-decoration:none;
+					line-height:18px;	
+				 }
+
+textarea {font-size:12px; border:1 solid #D4D4D4; resize: vertical; }
+
+select {
+	/* TODO �ɼ� ǥ�ð��� ���� �ʿ� */
+	}
+
+input,select		{
+					color:#666666;
+					font-size:12px;
+					border: 1px solid #A7A7AD;
+				}
+				
+table th		{ 
+					border:1px solid #dddddd; 
+					height:24px; 
+					text-align:center; 
+					letter-spacing:-1px; 
+					line-height:18px;
+					background-color:#EEF2FB; /* #f5f5f5; */
+					color:#777777;
+					font-weight:normal;
+				}
+
+/* ���� */
+hr {
+	border: 0px;
+	height: 1px;
+	background-color: #CCCCCC;
+	color: #CCCCCC;
+}
+
+A:link 			{color:#016BAE;text-decoration:none;} 
+A:visited 		{color:#016BAE;text-decoration:none} 
+A:active 		{color:#016BAE;text-decoration:none} 
+A:hover 		{color:#0099FF;text-decoration:none}
+
+img				{ margin:0; border:0; }
+
+table td img	{ vertical-align:middle;}
+
+/* ************************************************************************* */
+
+.header {
+	height:30px;
+	width:100%;
+	text-align:center;
+	vertical-align: middle;
+}
+
+.footer {
+	height:50px;
+	width:100%;
+	text-align:center;
+	vertical-align: middle;
+}
+
+.menu {
+	width:100px;
+	height: 500px;
+	text-align:left;
+	vertical-align: top;
+	/* border-right:1px solid #CCCCCC; */
+}
+
+.main {
+	text-align:left;
+	vertical-align: top;
+	/* background-color:#FFFAC7; /* test */
+}
+
+/* ************************************************************************* */
+
+table.gridtable {
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+	table-layout:fixed;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 4px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #EEF2FB; /* #dedede; */
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 4px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+
+/* ************************************************************************* */
+
+.title {
+	width:1%;
+	white-space:nowrap;
+}
+
+table.non-gridtable {
+	border-width: 0px;
+	border-collapse: collapse;
+}
+table.non-gridtable td {
+	border-width: 0px;
+	border-collapse: collapse;
+	line-height: 180%;
+	/* padding: 2px; */
+}
+
+/* ************************************************************************* */
+
+.noLine {
+	border:none;
+	border-right:0px; 
+	border-top:0px; 
+	boder-left:0px; 
+	boder-bottom:0px;
+}
+
+/* Style the CKEditor element to look like a textfield */
+.cke_textarea_inline
+{
+	/* 
+	padding: 10px; 
+	width: auto;
+	height: auto;
+	overflow: auto; 
+	*/
+
+	/* border: 0px solid gray; */
+	outline: 1px solid #A7A7AD;
+	-webkit-appearance: textfield;
+}
+
+/* chrome is not */
+.english {
+	ime-mode:disabled;
+}
+
+/* chrome is not */
+.korea {
+	ime-mode:active;
+}
+
+/* issue resolved. Deferred long-running timer task(s) to improve scrolling smoothness */
+.md-scroll-mask { position: initial; }
+
+#toTop
+{
+	z-index:1030;
+	width: 30px;
+	height: 20px;
+	border: 2px solid lightgray;
+	background: lightgray;
+	text-align: center;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	cursor: pointer;
+	display: none;
+	/* color: #C6C6C6; */
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	-o-border-radius: 30px;
+	border-radius: 20px;
+	-webkit-transition: all .25s linear;
+	-moz-transition: all .25s linear;
+	-o-transition: all .25s linear;
+	transition: all .25s linear;
+	padding: 5px;
+}
