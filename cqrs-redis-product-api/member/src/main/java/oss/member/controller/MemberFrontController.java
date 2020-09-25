@@ -87,7 +87,7 @@ public class MemberFrontController {
 		//TODO 아이디에 관련한 정보 없으면 넣기??
 		redisCmd.hput(InfraConstants.USER_H_KEY, id, id);
 		Cookie c = new Cookie("SESSION", id);
-		c.setDomain("jaceshim.com");
+		c.setDomain("pilot.com");
 		c.setHttpOnly(true);
 		response.addCookie(c);
 

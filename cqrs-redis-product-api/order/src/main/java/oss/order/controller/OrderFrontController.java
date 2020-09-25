@@ -50,7 +50,7 @@ public class OrderFrontController {
 
 	private static DecimalFormat PRICE_DECIMAL_FORMAT = new DecimalFormat("#,##0");
 
-	private static String ORDER_API = "http://order.jaceshim.com:20001/api/orders";
+	private static String ORDER_API = "http://order.pilot.com:20001/api/orders";
 
 	@Autowired
 	private ProductReadRepository productReadRepository;

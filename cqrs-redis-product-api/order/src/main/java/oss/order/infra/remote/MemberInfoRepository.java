@@ -28,7 +28,7 @@ public class MemberInfoRepository {
 
 	private static final String LOGIN_MEMBER_SESSION_ID_KEY = "sessionAttr:LOGIN_MEMBER_SESSION_ID_KEY";
 
-	private static final String MEMBER_SERVICE_HOST = "member.jaceshim.com";
+	private static final String MEMBER_SERVICE_HOST = "member.pilot.com";
 
 	private static final int MEMBER_SERVICE_PORT = 10001;
 
