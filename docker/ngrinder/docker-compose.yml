@@ -1,0 +1,21 @@
+version: '3.5'
+services:
+  controller:
+    image: ngrinder/controller
+    restart: always
+    ports: 
+      - "1000:80"
+      - "16001:16001"
+      - "12000-12009:12000-12009"
+    volumes:
+      - ./ngrinder-controller:/opt/ngrinder-controller
+
+  agent:
+    image: ngrinder/agent
+    restart: always
+    links:    
+      - controller
+
+
+# docker run -d -v ~/ngrinder-controller:/opt/ngrinder-controller -p 80:80 -p 16001:16001 -p 12000-12009:12000-12009 ngrinder/controller:3.4      
+# docker run -v ~/ngrinder-agent:/opt/ngrinder-agent -d ngrinder/agent:3.4 controller_ip:controller_web_port

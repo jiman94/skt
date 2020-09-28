@@ -1,0 +1,38 @@
+version: '3'
+services:
+  jenkins-master:
+    build: jenkins-master
+    image: danieleagle/jenkins-master:2.101-alpine
+    container_name: Jenkins-Master
+    restart: always
+    depends_on:
+      - jenkins-nginx
+    volumes:
+      - ./jenkins-master/volume_data/logs:/var/log/jenkins
+      - ./jenkins-master/volume_data/home:/var/jenkins_home
+    networks:
+      dev-net:
+        aliases:
+          - jenkins-master.dev.internal.example.com
+  jenkins-nginx:
+    build: jenkins-nginx
+    image: danieleagle/jenkins-nginx:1.13.8-alpine
+    container_name: Jenkins-NGINX
+    restart: always
+    ports:
+      - 52443:443
+      - 50000:50000
+    volumes:
+      - ./jenkins-nginx/volume_data/ssl:/etc/ssl/certs/nginx:ro
+    networks:
+      dev-net:
+        aliases:
+          - jenkins-nginx.dev.internal.example.com
+  jenkins-slave:
+    build: jenkins-slave
+    image: danieleagle/jenkins-slave:8u151-jre-alpine
+    container_name: Jenkins-Slave
+networks:
+  dev-net:
+    external:
+      name: development

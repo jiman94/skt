@@ -1,0 +1,66 @@
+PLAIN
+K 11
+targetHosts
+V 19
+member.jaceshim.com
+K 9
+validated
+V 5
+false
+END
+ENDREP
+id: 2-5.0.r20/83
+type: file
+pred: 2-5.0.r16/550
+count: 12
+text: 14 0 201 2406 c0f076aa33581b8ea60e3265664afeb7 bc91f3213a2fc15f63ff2fb88cf71f2f1ea89c58 19-j/_2
+props: 20 0 70 70 8280002a3e8360713afcf85ffc89623b
+cpath: /member.jaceshim.com/TestRunner.groovy
+copyroot: 0 /
+
+PLAIN
+K 17
+TestRunner.groovy
+V 17
+file 2-5.0.r20/83
+END
+ENDREP
+id: 0-5.0.r20/418
+type: dir
+pred: 0-5.0.r16/888
+count: 12
+text: 20 355 50 50 21267aa9bce232409fd19656364b64a0
+cpath: /member.jaceshim.com
+copyroot: 0 /
+
+PLAIN
+K 14
+.gitconfig.yml
+V 17
+file 0-1.0.r1/346
+K 10
+chicor.com
+V 16
+dir 0-2.0.r4/368
+K 19
+member.jaceshim.com
+V 17
+dir 0-5.0.r20/418
+K 20
+product.jaceshim.com
+V 18
+dir 0-17.0.r19/421
+END
+ENDREP
+id: 0.0.r20/767
+type: dir
+pred: 0.0.r19/773
+count: 20
+text: 20 571 183 183 e175b79de1da636cd544ef8729b892f3
+cpath: /
+copyroot: 0 /
+
+2-5.0.t19-j modify-file true true /member.jaceshim.com/TestRunner.groovy
+
+
+767 899

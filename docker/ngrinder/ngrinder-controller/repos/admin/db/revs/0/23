@@ -1,0 +1,66 @@
+PLAIN
+K 11
+targetHosts
+V 9
+naver.com
+END
+ENDREP
+id: 2-22.0.r23/48
+type: file
+pred: 2-22.0.r22/938
+count: 1
+text: 22 0 877 2214 25253fc6c07f0b793391435943050094 ee9ea62a38dce2ec8509cc73d06d298cad9963c6 22-m/_2
+props: 23 0 35 35 3d2b20ac65ac08d12ac259ff2682f6b2
+cpath: /naver.com/TestRunner.groovy
+copyroot: 0 /
+
+PLAIN
+K 17
+TestRunner.groovy
+V 18
+file 2-22.0.r23/48
+END
+ENDREP
+id: 0-22.0.r23/375
+type: dir
+pred: 0-22.0.r22/1248
+count: 1
+text: 23 311 51 51 fb67d3e0d038684341d5b666d2be3776
+cpath: /naver.com
+copyroot: 0 /
+
+PLAIN
+K 14
+.gitconfig.yml
+V 17
+file 0-1.0.r1/346
+K 10
+chicor.com
+V 16
+dir 0-2.0.r4/368
+K 19
+member.jaceshim.com
+V 17
+dir 0-5.0.r21/477
+K 9
+naver.com
+V 18
+dir 0-22.0.r23/375
+K 20
+product.jaceshim.com
+V 18
+dir 0-17.0.r19/421
+END
+ENDREP
+id: 0.0.r23/754
+type: dir
+pred: 0.0.r22/1608
+count: 23
+text: 23 520 221 221 faa6f17c9f647eb0a4a2689bf2781321
+cpath: /
+copyroot: 0 /
+
+2-22.0.t22-m modify-file true true /naver.com/TestRunner.groovy
+
+
+754 887

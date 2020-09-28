@@ -1,0 +1,37 @@
+id: 0-17.0.r17/0
+type: dir
+count: 0
+cpath: /product.jaceshim.com
+copyroot: 0 /
+
+PLAIN
+K 14
+.gitconfig.yml
+V 17
+file 0-1.0.r1/346
+K 10
+chicor.com
+V 16
+dir 0-2.0.r4/368
+K 19
+member.jaceshim.com
+V 17
+dir 0-5.0.r16/888
+K 20
+product.jaceshim.com
+V 16
+dir 0-17.0.r17/0
+END
+ENDREP
+id: 0.0.r17/274
+type: dir
+pred: 0.0.r16/1187
+count: 17
+text: 17 80 181 181 156a1738d790e16d48e01043613de2a7
+cpath: /
+copyroot: 0 /
+
+_0.0.t16-g add-dir false false /product.jaceshim.com
+
+
+274 406
