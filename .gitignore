@@ -1,4 +1,4 @@
 /.metadata/
-*.DS_Store
-*.class
-*.log
+**/*.DS_Store
+**/*.class
+**/*.log
