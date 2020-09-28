@@ -1,0 +1,22 @@
+
+
+apply plugin: 'war'
+
+//bootWar 비활성화시
+//bootWar.enabled = false
+//war.enabled = true
+
+
+dependencies {
+	//implementation 'org.springframework.boot:spring-boot-starter-web'
+	//compileOnly 'org.projectlombok:lombok'
+	//developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	//annotationProcessor 'org.projectlombok:lombok'
+
+	//compile('org.springframework.boot:spring-boot-starter-security')
+	
+	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
+	compile('javax.servlet:jstl')
+	
+	//testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

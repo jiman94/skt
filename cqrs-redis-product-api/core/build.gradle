@@ -1,0 +1,35 @@
+
+//jar {
+//    baseName = 'core'
+//    version = '0.0.1-SNAPSHOT'
+//}
+
+bootJar {
+    enabled = false
+    archiveVersion = '0.0.1-SNAPSHOT'
+    archiveExtension = 'jar'    
+}
+
+jar {
+    enabled = true
+}
+
+
+//bootRepackage {
+    //mainClass = 'youPackage.Application'
+//}
+
+//jace.shim.springcamp2017.core.ProductApplication
+
+//mainClassName = 'jace.shim.springcamp2017.core.ProductApplication'
+
+dependencies {
+    ext {
+        jacksonVersion = '2.11.2'
+    }
+    // infra 종속적인 의존성이 core에 와 있다니 ㅜㅜ
+    compile('org.hibernate:hibernate-core:5.4.21.Final')
+    compile("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
+    compile("com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}")
+}
+

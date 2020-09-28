@@ -1,0 +1,65 @@
+version: '3'
+# 20200914
+services:
+    mysql:
+        image: mysql:5.7
+        container_name: mysql_host
+        environment:
+            MYSQL_DATABASE: "system"
+            MYSQL_USER: "pilot"
+            MYSQL_PASSWORD: "pilot"
+            MYSQL_ROOT_PASSWORD: "root"    
+        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        volumes:
+            - "./mysql/init/:/docker-entrypoint-initdb.d/"
+            - "./mysql/data:/var/lib/mysql"
+            - "./mysql/conf/mysqld.conf:/etc/mysql/mysql.conf.d/mysqld.cnf"
+        ports:
+            - 3306:3306
+        networks:
+            - mysqlnetwork
+ 
+    redis-server:
+        restart: always
+        image: redis:4.0
+        container_name: redis-server
+        command: /bin/bash -c 'redis-server --appendonly yes'
+        sysctls:
+            - net.core.somaxconn=65535
+        ports:
+            - "6379:6379"
+        volumes:
+            - ./redis:/data
+        networks:
+            - mysqlnetwork
+ 
+    zookeeper:
+        image: wurstmeister/zookeeper
+        container_name: zookeeper
+        ports:
+            - "2181:2181"
+        networks:
+            - mysqlnetwork
+
+    kafka:
+        image: wurstmeister/kafka
+        container_name: kafka
+        environment:
+            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+            KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+            KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+            KAFKA_ADVERTISED_PORT: 9092
+            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+            #KAFKA_CREATE_TOPICS: "javainuse-topic:1:1"   # Topic명:Partition개수:Replica개수
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        ports:
+            - "9092:9092"
+        depends_on:
+            - zookeeper
+        networks:
+            - mysqlnetwork
+        
+networks:
+    mysqlnetwork:
+        driver: bridge
