@@ -1,9 +1,0 @@
-/docker/jenkins/jenkins-master/volume_data/logs/jenkins.log {
-  weekly
-  copytruncate
-  missingok
-  rotate 52
-  compress
-  delaycompress
-  notifempty
-}
