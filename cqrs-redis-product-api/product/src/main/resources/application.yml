@@ -9,4 +9,4 @@ kafka:
 ---    
 kafka:
   bootstrap:
-    servers: localhost:9092
+    servers: localhost:9092,localhost:9093,localhost:9094

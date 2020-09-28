@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>cqrs-redis-product-api</name>
+	<name>cqrs-redis</name>
 	<comment>Project cqrs-redis-product-api created by Buildship.</comment>
 	<projects>
 	</projects>

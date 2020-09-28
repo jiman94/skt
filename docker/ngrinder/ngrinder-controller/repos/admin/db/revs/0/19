@@ -1,0 +1,66 @@
+PLAIN
+K 11
+targetHosts
+V 0
+
+K 9
+validated
+V 5
+false
+END
+ENDREP
+id: 1-18.0.r19/63
+type: file
+pred: 1-18.0.r18/960
+count: 1
+text: 16 0 445 2665 d6cbd650ecdcd3a41f8f0e66ce5c4acc a8412dfa2f16f1a0a28adf208b8439f7da19ae9e 18-i/_2
+props: 19 0 50 50 9451ec6176239ace09c05a5d0190e9e9
+cpath: /product.jaceshim.com/product.jaceshim.com.groovy
+copyroot: 0 /
+
+PLAIN
+K 27
+product.jaceshim.com.groovy
+V 18
+file 1-18.0.r19/63
+END
+ENDREP
+id: 0-17.0.r19/421
+type: dir
+pred: 0-17.0.r18/1301
+count: 2
+text: 19 347 61 61 75a1c39f91e94be89b0222aeb487d1e0
+cpath: /product.jaceshim.com
+copyroot: 0 /
+
+PLAIN
+K 14
+.gitconfig.yml
+V 17
+file 0-1.0.r1/346
+K 10
+chicor.com
+V 16
+dir 0-2.0.r4/368
+K 19
+member.jaceshim.com
+V 17
+dir 0-5.0.r16/888
+K 20
+product.jaceshim.com
+V 18
+dir 0-17.0.r19/421
+END
+ENDREP
+id: 0.0.r19/773
+type: dir
+pred: 0.0.r18/1653
+count: 19
+text: 19 577 183 183 062508b56769dc0b9068db1961e4ef96
+cpath: /
+copyroot: 0 /
+
+1-18.0.t18-i modify-file true true /product.jaceshim.com/product.jaceshim.com.groovy
+
+
+773 906

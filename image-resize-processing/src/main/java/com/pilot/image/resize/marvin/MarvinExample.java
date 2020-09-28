@@ -11,8 +11,6 @@ import org.marvinproject.image.transform.scale.Scale;
 import marvin.image.MarvinImage;
 
 public class MarvinExample {
-	
-	
     static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
         MarvinImage image = new MarvinImage(originalImage);
         Scale scale = new Scale();

@@ -12,9 +12,14 @@ export DOCKER_HOST_IP=127.0.0.1
 
 ## Multiple Zookeeper / Multiple Kafka
 
+zookeeper : 3
+kafka : 3
+
+
+
 ```
-docker-compose -f zk-multiple-kafka-multiple.yml up
-docker-compose -f zk-multiple-kafka-multiple.yml down
+docker-compose -f kafka-multiple.yml up
+docker-compose -f kafka-multiple.yml down
 ```
 
 ## Full stack
@@ -34,7 +39,3 @@ docker-compose -f zk-multiple-kafka-multiple.yml down
  docker-compose -f full-stack.yml up
  docker-compose -f full-stack.yml down
  ```
-
- 
- event-driven architectures
- event-streaming architectures

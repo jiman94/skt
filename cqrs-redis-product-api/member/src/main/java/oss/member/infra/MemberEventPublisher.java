@@ -1,17 +1,22 @@
 package oss.member.infra;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 import oss.core.event.EventPublisher;
 import oss.member.model.event.MemberRawEvent;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by jaceshim on 2017. 3. 17..
@@ -39,12 +44,13 @@ public class MemberEventPublisher implements EventPublisher<MemberRawEvent> {
 			return;
 		}
 
-		try {
-			final String sendMessage = objectMapper.writeValueAsString(rawEvent);
-			kafkaTemplate.send(memberKafkaTopic, sendMessage);
-			log.debug("{} 전송 완료  - {}", this.memberKafkaTopic, sendMessage);
-		} catch (final JsonProcessingException e) {
-			log.error(e.getMessage(), e);
-		}
+//		try {
+//			final String sendMessage = objectMapper.writeValueAsString(rawEvent);
+//			kafkaTemplate.send(memberKafkaTopic, sendMessage);
+//			log.debug("{} 전송 완료  - {}", this.memberKafkaTopic, sendMessage);
+//		} catch (final JsonProcessingException e) {
+//			log.error(e.getMessage(), e);
+//		}
 	}
+	
 }

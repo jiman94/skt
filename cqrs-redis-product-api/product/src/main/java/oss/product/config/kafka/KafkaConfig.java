@@ -1,5 +1,7 @@
 package oss.product.config.kafka;
 
+import org.apache.kafka.clients.admin.AdminClientConfig;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -26,6 +28,9 @@ public class KafkaConfig {
 	@Value("${kafka.bootstrap.servers}")
 	private String kafkaBootstrapServers;
 
+	@Value("${kafka.topic.product}")
+	private String productKafkaTopic;
+	
 	@Bean
 	ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
 		ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
@@ -70,5 +75,17 @@ public class KafkaConfig {
 	public KafkaTemplate<String, String> kafkaTemplate() {
 		return new KafkaTemplate<>(producerFactory());
 	}
+	
+//	@Bean
+//    public KafkaAdmin kafkaAdmin() {
+//        Map<String, Object> configs = new HashMap<>();
+//        configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServers);
+//        return new KafkaAdmin(configs);
+//    }
+//
+//    @Bean
+//    public NewTopic newTopic() {
+//        return new NewTopic(productKafkaTopic, 3, (short) 3);
+//    }
 
 }

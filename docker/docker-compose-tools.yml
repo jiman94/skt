@@ -1,0 +1,21 @@
+version: '3'
+# 20200914
+services:
+
+    scouter-server:
+        restart: always
+        image: scouter-server
+        ports:
+            - "6100:6100"
+            - "6101:6101/udp"
+            - "9411:9411"
+        build:
+            context: ./apm-scouter/scouter-server
+            dockerfile: Dockerfile
+        container_name: scouter-server
+        networks:
+            - mysqlnetwork
+        
+networks:
+    mysqlnetwork:
+        driver: bridge

@@ -1,0 +1,54 @@
+PLAIN
+K 11
+targetHosts
+V 10
+chicor.com
+END
+ENDREP
+id: 2-2.0.r4/50
+type: file
+pred: 2-2.0.r3/50
+count: 2
+text: 2 0 879 2217 a0db48ecd588c2431ae204e99fdda10b d1f1c5c1df41d9f64036f36712b64866099c62d8 3-3/_2
+props: 4 0 37 37 239562d1755470f9092a2aab97b12e40
+cpath: /chicor.com/TestRunner.groovy
+copyroot: 0 /
+
+PLAIN
+K 17
+TestRunner.groovy
+V 16
+file 2-2.0.r4/50
+END
+ENDREP
+id: 0-2.0.r4/368
+type: dir
+pred: 0-2.0.r3/369
+count: 2
+text: 4 306 49 49 8597431004555b4c21236507039f134a
+cpath: /chicor.com
+copyroot: 0 /
+
+PLAIN
+K 14
+.gitconfig.yml
+V 17
+file 0-1.0.r1/346
+K 10
+chicor.com
+V 16
+dir 0-2.0.r4/368
+END
+ENDREP
+id: 0.0.r4/606
+type: dir
+pred: 0.0.r3/608
+count: 4
+text: 4 508 85 85 48b10dab996c9ac0de2c1c472841b376
+cpath: /
+copyroot: 0 /
+
+2-2.0.t3-3 modify-file true true /chicor.com/TestRunner.groovy
+
+
+606 732
