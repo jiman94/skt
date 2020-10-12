@@ -31,48 +31,7 @@ services:
         volumes:
             - ./redis:/data
         networks:
-            - mysqlnetwork
- 
-    zookeeper:
-        image: wurstmeister/zookeeper
-        container_name: zookeeper
-        ports:
-            - "2181:2181"
-        networks:
-            - mysqlnetwork
-
-    kafka:
-        image: wurstmeister/kafka
-        container_name: kafka
-        environment:
-            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-            KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-            KAFKA_ADVERTISED_HOST_NAME: zookeeper
-            KAFKA_ADVERTISED_PORT: 9092
-            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-            KAFKA_CREATE_TOPICS: "javainuse-topic:1:1"   # Topic명:Partition개수:Replica개수
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-        ports:
-            - "9092:9092"
-        depends_on:
-            - zookeeper
-        networks:
-            - mysqlnetwork
-
-    scouter-server:
-        restart: always
-        image: scouter-server
-        ports:
-            - "6100:6100"
-            - "6101:6101/udp"
-        build:
-            context: ./apm-scouter/scouter-server
-            dockerfile: Dockerfile
-        container_name: scouter-server
-        networks:
-            - mysqlnetwork
-        
+            - mysqlnetwork                   
 networks:
     mysqlnetwork:
         driver: bridge
