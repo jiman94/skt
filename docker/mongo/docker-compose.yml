@@ -1,0 +1,40 @@
+version: '3.3'
+services:
+
+  prometheus:
+    image: prom/prometheus:v2.7.2
+    container_name: 'prometheus'
+    ports:
+      - '9090:9090'
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  pushgateway:
+    image: prom/pushgateway:v0.6.0
+    container_name: 'pushgateway'
+    ports:
+      - '9091:9091'
+
+  grafana:
+    image: grafana/grafana:6.0.2
+    container_name: 'grafana'
+    ports:
+      - '3000:3000'
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 9017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: changeme
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 9018:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: changeme
