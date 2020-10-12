@@ -2,3 +2,4 @@
 **/*.DS_Store
 **/*.class
 **/*.log
+docker/kafka-multiple/kafka1/data/**
