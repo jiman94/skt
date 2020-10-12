@@ -15,9 +15,12 @@ export DOCKER_HOST_IP=127.0.0.1
 zookeeper : 3
 kafka : 3
 
-
-
+```yaml
+kafka:
+  bootstrap:
+    servers: localhost:9092,localhost:9093,localhost:9094
 ```
+```sh
 docker-compose -f kafka-multiple.yml up
 docker-compose -f kafka-multiple.yml down
 ```
