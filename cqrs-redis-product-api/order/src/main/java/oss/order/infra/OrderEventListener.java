@@ -27,7 +27,7 @@ public class OrderEventListener extends AbstractEventListener {
 	@Autowired
 	EventProjector eventProjector;
 
-	@org.springframework.kafka.annotation.KafkaListener(id = "product-consumer-group", topics = "product-event-topic")
+	@org.springframework.kafka.annotation.KafkaListener(topics = "product-event-topic")
 	public void productEventListener(String message) {
 		log.debug("receive message : {}", message);
 

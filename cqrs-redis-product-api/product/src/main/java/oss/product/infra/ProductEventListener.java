@@ -33,7 +33,7 @@ public class ProductEventListener extends AbstractEventListener {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	@org.springframework.kafka.annotation.KafkaListener(id = "order-consumer-group", topics = "order-event-topic")
+	@org.springframework.kafka.annotation.KafkaListener(topics = "order-event-topic")
 	public void orderEventListener(String message) throws IOException, ClassNotFoundException {
 		log.debug("receive message from order : {}", message);
 
