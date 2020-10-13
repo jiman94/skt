@@ -1,16 +1,18 @@
 buildscript {
-    ext {
-        springBootVersion = '2.3.2.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath "io.spring.gradle:dependency-management-plugin:1.0.9.RELEASE"
-    }
+	ext {
+		springBootVersion = '2.1.6.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+		maven { url "http://www.datanucleus.org/downloads/maven2" }
+	}
+	dependencies {
+		// spring repo
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
 }
-
  
 // 플러그인 지정
 plugins {
@@ -99,9 +101,6 @@ subprojects {
 		//compile('io.zipkin.brave:brave:5.12.6')
 
 	    //compile('org.springframework.cloud:spring-cloud-starter-zipkin:2.2.4.RELEASE')
-	    
-	    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-zipkin', version: '2.2.4.RELEASE'
-	    
 	    
  	//   implementation 'org.springframework.kafka:spring-kafka'
 						

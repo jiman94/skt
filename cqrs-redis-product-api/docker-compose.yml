@@ -2,7 +2,7 @@ version: '3'
 # 20200914
 services:
     mysql:
-        image: mysql:5.7
+        image: mysql:8.0.19
         container_name: mysql_host
         environment:
             MYSQL_DATABASE: "system"
@@ -21,7 +21,7 @@ services:
  
     redis-server:
         restart: always
-        image: redis:4.0
+        image: redis:5.0.8
         container_name: redis-server
         command: /bin/bash -c 'redis-server --appendonly yes'
         sysctls:
