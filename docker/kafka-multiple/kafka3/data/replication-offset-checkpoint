@@ -14,7 +14,7 @@ member-event-topic 2 0
 order-event-topic 0 0
 docker-connect-offsets 0 0
 __consumer_offsets 25 1861
-__consumer_offsets 35 193
+__consumer_offsets 35 231
 __consumer_offsets 41 0
 __consumer_offsets 33 0
 __consumer_offsets 23 0
@@ -24,15 +24,15 @@ docker-connect-offsets 3 0
 __consumer_offsets 47 0
 __consumer_offsets 16 0
 __consumer_offsets 28 0
-__consumer_offsets 31 404
+__consumer_offsets 31 478
 __consumer_offsets 36 0
 __consumer_offsets 42 0
 __consumer_offsets 3 0
 __consumer_offsets 18 0
 docker-connect-offsets 21 0
-__consumer_offsets 37 83
+__consumer_offsets 37 84
 __consumer_offsets 15 0
-__consumer_offsets 24 155
+__consumer_offsets 24 196
 docker-connect-offsets 15 0
 docker-connect-offsets 6 0
 product-event-topic 1 1
