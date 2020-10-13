@@ -15,8 +15,10 @@ gradle wrapper --gradle-version 6.0
 * Kafka - using port ( 9092 )
 * Git
 
-## Install
-dfdf
+
+
+## Install 참조 소스  
+
 git clone https://github.com/jaceshim/springcamp2017.git
 
 cd /Users/mz03-jmryu/Project/skt/springcamp2017
@@ -34,8 +36,10 @@ create database & table ( default user is root )
 
 
 ## hosts file 수정
+
 sudo vi /etc/hosts
-127.0.0.1 member.jaceshim.com order.jaceshim.com product.jaceshim.com
+127.0.0.1 member.pilot.com order.pilot.com product.pilot.com
+
 
 ## SpringBoot Application 실행 
 
@@ -45,7 +49,7 @@ cd product; ../gradlew bootRun
 
 
 ## access the URL 
-http://member.jaceshim.com:10001/regist
+http://member.pilot.com:10001/regist
 
  - 회원가입 
  - 로그인
@@ -104,9 +108,6 @@ Hibernate 4.x -> Hibernate 5.x 변경시 유의 사항.
 
 @GeneratedValue(strategy = GenerationType.AUTO) 
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
-
 
 
 /Users/mz03-jmryu/Project/workspace.skt/cqrs-redis/member
