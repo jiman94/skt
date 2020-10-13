@@ -3,7 +3,6 @@ package oss.member.config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,8 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -22,10 +19,7 @@ import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
-import org.springframework.web.client.RestTemplate;
 
-import brave.http.HttpTracing;
-import brave.spring.web.TracingClientHttpRequestInterceptor;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -36,13 +30,7 @@ public class RedisCmd {
 	@Qualifier("redisTemplateCmd")
 	private RedisTemplate<String, Object> template;
 
-    // tracing 
-    @Bean
-    public RestTemplate restTemplate(HttpTracing tracing) {
-        return new RestTemplateBuilder()
-                .additionalInterceptors(TracingClientHttpRequestInterceptor.create(tracing)).build();
-    }
-    //
+
 
     
 	public RedisConnectionFactory getConnectionFactory() {

@@ -13,3 +13,6 @@ docker/kafka-multiple/zoo3/data/**
 docker/kafka-multiple/zoo3/datalog/**
 docker/mysql/data/**
 docker/redis/*.aof
+docker/mysql/data/**
+docker/kafka-multiple/**
+
