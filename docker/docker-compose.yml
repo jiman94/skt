@@ -318,6 +318,15 @@ services:
         - ./redis:/data
     networks:
         - mysqlnetwork
+        
+  # View traces at http://127.0.0.1:9411/zipkin
+  zipkin:
+    image: openzipkin/zipkin-slim
+    container_name: zipkin
+    ports:
+      - 9411:9411
+    networks:
+      - mysqlnetwork
 
 networks:
   mysqlnetwork:
