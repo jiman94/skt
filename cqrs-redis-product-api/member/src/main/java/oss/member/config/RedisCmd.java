@@ -3,7 +3,6 @@ package oss.member.config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -31,6 +30,9 @@ public class RedisCmd {
 	@Qualifier("redisTemplateCmd")
 	private RedisTemplate<String, Object> template;
 
+
+
+    
 	public RedisConnectionFactory getConnectionFactory() {
 		return template.getConnectionFactory();
 	}

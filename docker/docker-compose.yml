@@ -280,7 +280,6 @@ services:
     ports:
         - "6100:6100"
         - "6101:6101/udp"
-        - "9411:9411"
     build:
         context: ./apm-scouter/scouter-server
         dockerfile: Dockerfile

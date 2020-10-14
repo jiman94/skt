@@ -1,1 +1,4 @@
-SCOUTER_SERVICE_MAPS_OJB_TYPE= STORAGE_TYPE=scouter java -Dloader.path='zipkin-storage-scouter.jar,zipkin-storage-scouter.jar!lib' -Dspring.profiles.active=scouter -cp zipkin.jar org.springframework.boot.loader.PropertiesLauncher
+java -jar zipkin.jar
+
+
+docker run -d -p 9412:9411 openzipkin/zipkin

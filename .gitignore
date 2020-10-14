@@ -13,4 +13,10 @@ docker/kafka-multiple/zoo3/data/**
 docker/kafka-multiple/zoo3/datalog/**
 docker/mysql/data/**
 docker/redis/*.aof
+<<<<<<< HEAD
 cqrs-redis-product-api/.gradle/**
+=======
+docker/mysql/data/**
+docker/kafka-multiple/**
+
+>>>>>>> refs/remotes/origin/master
