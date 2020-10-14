@@ -13,3 +13,4 @@ docker/kafka-multiple/zoo3/data/**
 docker/kafka-multiple/zoo3/datalog/**
 docker/mysql/data/**
 docker/redis/*.aof
+cqrs-redis-product-api/.gradle/**
