@@ -296,6 +296,7 @@ services:
         MYSQL_PASSWORD: "pilot"
         MYSQL_ROOT_PASSWORD: "root"    
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: --default-authentication-plugin=mysql_native_password
     volumes:
         - "./mysql/init/:/docker-entrypoint-initdb.d/"
         - "./mysql/data:/var/lib/mysql"
