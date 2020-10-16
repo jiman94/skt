@@ -295,8 +295,7 @@ services:
         MYSQL_USER: "pilot"
         MYSQL_PASSWORD: "pilot"
         MYSQL_ROOT_PASSWORD: "root"    
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    command: --default-authentication-plugin=mysql_native_password
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
     volumes:
         - "./mysql/init/:/docker-entrypoint-initdb.d/"
         - "./mysql/data:/var/lib/mysql"
@@ -319,7 +318,7 @@ services:
         - ./redis:/data
     networks:
         - mysqlnetwork
-        
+
   # View traces at http://127.0.0.1:9411/zipkin
   zipkin:
     image: openzipkin/zipkin-slim
