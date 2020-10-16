@@ -13,10 +13,20 @@ docker/kafka-multiple/zoo3/data/**
 docker/kafka-multiple/zoo3/datalog/**
 docker/mysql/data/**
 docker/redis/*.aof
-<<<<<<< HEAD
 cqrs-redis-product-api/.gradle/**
-=======
 docker/mysql/data/**
 docker/kafka-multiple/**
-
->>>>>>> refs/remotes/origin/master
+docker/redis/appendonly.aof
+cqrs-redis-product-api/.gradle/**
+docker/mysql/data/**
+docker/kafka-multiple/**
+image-resize-processing/bin/**
+image-resize-processing/target/**
+https_RESTClientDemo/bin/**
+https_RESTClientDemo/target/**
+ranking-list-with-redis/bin/**
+ranking-list-with-redis/target/**
+session-clustering-with-redis/bin/**
+session-clustering-with-redis/target/**
+session-clustering-with-redis
+ranking-list-with-redis
