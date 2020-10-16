@@ -28,5 +28,3 @@ ranking-list-with-redis/bin/**
 ranking-list-with-redis/target/**
 session-clustering-with-redis/bin/**
 session-clustering-with-redis/target/**
-session-clustering-with-redis
-ranking-list-with-redis

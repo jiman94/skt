@@ -1,0 +1,127 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+
+test {
+	useJUnitPlatform()
+}
+
+
+	dependencies {
+		// Spring
+		implementation('org.springframework.boot:spring-boot-starter-aop')
+		implementation('org.springframework.boot:spring-boot-starter-cache')
+		implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+		implementation('org.springframework.boot:spring-boot-starter-mail')
+		implementation('org.springframework.boot:spring-boot-starter-validation')
+		implementation('org.springframework.boot:spring-boot-starter-web')
+		implementation('org.springframework.boot:spring-boot-starter-security')
+
+        implementation("org.springframework.cloud:spring-cloud-starter-zipkin:2.1.4.RELEASE")
+        implementation("org.springframework.cloud:spring-cloud-starter-sleuth:2.1.4.RELEASE")
+        
+        
+		//compile('io.zipkin.brave:brave:5.12.6')
+
+	    //compile('org.springframework.cloud:spring-cloud-starter-zipkin:2.2.4.RELEASE')
+	    
+	    //compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-zipkin', version: '2.2.4.RELEASE'
+	    
+	    
+ 	//   implementation 'org.springframework.kafka:spring-kafka'
+						
+		// lang
+		implementation('org.apache.commons:commons-lang3')
+		// model mapper
+	    //implementation('org.modelmapper:modelmapper:1.1.2')
+		// jaxb
+		//implementation('javax.xml.bind:jaxb-api:2.2.11')
+		// ehcach
+		//implementation('net.sf.ehcache:ehcache:2.10.3')
+		// jwt
+		//implementation("com.nimbusds:nimbus-jose-jwt:5.9")
+		// excel
+		implementation("org.apache.poi:poi:3.17")
+		implementation("org.apache.poi:poi-ooxml:3.17")
+		
+		// database 
+		// jdbc
+		implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+		implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0'
+		runtimeOnly 'mysql:mysql-connector-java:8.0.16'		
+	    implementation('mysql:mysql-connector-java')
+		//implementation('org.mariadb.jdbc:mariadb-java-client:2.2.3')
+		//implementation('oracle:ojdbc6:11.2.0.3')
+		//implementation('com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre8')
+		//implementation('com.h2database:h2')
+		// web-socket
+		//implementation('org.springframework.boot:spring-boot-starter-websocket')
+		//implementation('org.webjars:sockjs-client:1.1.2')
+		//implementation('org.webjars:stomp-websocket:2.3.1')
+		//implementation('org.webjars:webjars-locator:0.30')
+		// swagger
+	    implementation('io.springfox:springfox-swagger2:2.8.0')
+	    implementation('io.springfox:springfox-swagger-ui:2.8.0')
+		// test & dev tools
+		implementation("org.springframework.boot:spring-boot-devtools")
+		implementation('org.springframework.retry:spring-retry')
+			
+		testImplementation('org.springframework.boot:spring-boot-starter-test')
+		testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc')
+		// junit5
+		testImplementation('org.junit.jupiter:junit-jupiter-api:5.5.2')
+		testRuntimeOnly ('org.junit.jupiter:junit-jupiter-engine:5.5.2')
+		testImplementation ('org.junit.platform:junit-platform-launcher:1.5.2')
+		// lombok
+		compileOnly	('org.projectlombok:lombok:1.18.8')
+		annotationProcessor ('org.projectlombok:lombok:1.18.8')
+		
+		
+		testAnnotationProcessor ('org.projectlombok:lombok:1.18.8')
+		testCompileOnly ('org.projectlombok:lombok:1.18.8')
+		testImplementation('org.springframework.security:spring-security-test:5.2.2.RELEASE')
+
+        // session
+	    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	    compile 'org.springframework.session:spring-session-data-redis'
+	    compile 'redis.clients:jedis:3.3.0'
+	    
+		//implementation 'org.springframework.session:spring-session-core'
+		implementation 'org.springframework.kafka:spring-kafka'	    		
+
+
+   		
+		implementation('commons-io:commons-io:2.5')
+		implementation('org.jsoup:jsoup:1.7.3')
+		implementation('com.google.guava:guava:21.0')
+		
+	    //compile 'com.google.guava:guava:29.0-jre'	    		
+	    compile 'org.apache.httpcomponents:httpclient:4.5.10'
+	    compile 'com.google.code.gson:gson:2.8.5'
+	    compile 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
+	    compile 'com.fasterxml.jackson.core:jackson-core:2.11.2'
+	    
+	    // modelmapper
+		compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.4'
+		
+		//jwt
+		compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
+	}
