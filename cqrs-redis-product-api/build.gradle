@@ -181,6 +181,7 @@ subprojects {
 	    compile 'com.google.code.gson:gson:2.8.5'
 	    compile 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
 	    compile 'com.fasterxml.jackson.core:jackson-core:2.11.2'
+	    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.11.2'
 	    
 	    // modelmapper
 		compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.4'
