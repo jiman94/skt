@@ -1,9 +1,11 @@
 package oss.product.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import lombok.extern.slf4j.Slf4j;
 import oss.order.model.read.OrderItem;
@@ -62,6 +67,21 @@ public class ProductController {
 
 		final Product product = productService.createProduct(command);
 		return new ResponseEntity<>(product, HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/listproducts")
+	public ResponseEntity listProduct(
+			HttpServletRequest request, HttpServletResponse response
+			) {
+		MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+		Map<String, MultipartFile> files = multiRequest.getFileMap();
+		
+		int n_res = productService.product2Redis(files);
+		ResponseEntity result = null;
+		if( n_res < 0) result = new ResponseEntity(HttpStatus.BAD_REQUEST);
+		
+		return result;
+		
 	}
 
 	@RequestMapping(value = "/products/{productId}", method = RequestMethod.POST, params = "type=changeName")
@@ -132,6 +152,7 @@ public class ProductController {
 	public ResponseEntity<List<OrderItem>> productList(@RequestBody List<OrderItem> orderItems) {
 		return new ResponseEntity<>(productService.getProductList(orderItems), HttpStatus.OK);
 	}
+	
 
 	private FieldErrorResource getFieldErrorResource(FieldError fieldError) {
 		FieldErrorResource fieldErrorResource = new FieldErrorResource();

@@ -31,6 +31,14 @@ public class ProductFrontController {
 		return "products";
 	}
 
+	@RequestMapping(value = "/setproducts", method = RequestMethod.GET)
+	public String setProducts(Model model) {
+		final List<Product> products = productReadRepository.findAll();
+		model.addAttribute("products", products);
+
+		return "setproducts";
+	}
+	
 	@RequestMapping(value = "/products", params = "type=createProduct", method = RequestMethod.GET)
 	public String createProduct(Model model) {
 		model.addAttribute("images", getImages());
