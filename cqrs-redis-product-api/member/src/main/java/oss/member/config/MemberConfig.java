@@ -8,9 +8,12 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,6 +50,19 @@ public class MemberConfig implements WebServerFactoryCustomizer<ConfigurableServ
         executor.initialize();
         return executor;
     }
+	
+	@Bean
+	public RestTemplate restTemplate() {
+		final RestTemplate restTemplate = new RestTemplate();
+		for (int i = 0; i < restTemplate.getMessageConverters().size(); i++) {
+			final HttpMessageConverter<?> httpMessageConverter = restTemplate.getMessageConverters().get(i);
+			if (httpMessageConverter instanceof MappingJackson2HttpMessageConverter) {
+				restTemplate.getMessageConverters().set(i, httpMessageConverter);
+			}
+		}
+
+		return restTemplate;
+	}
 	
 //	@Bean
 //	public DefaultCookieSerializer cookieSerializer() {

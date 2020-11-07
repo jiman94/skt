@@ -1,5 +1,22 @@
 package oss.member.service;
 
+import static java.lang.String.format;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+
 import oss.member.exception.DuplicateMemberEmailException;
 import oss.member.exception.DuplicateMemberIdException;
 import oss.member.exception.NotExistsMemberException;
@@ -7,17 +24,7 @@ import oss.member.infra.MemberEventHandler;
 import oss.member.infra.read.MemberReadRepository;
 import oss.member.model.Member;
 import oss.member.model.command.MemberCommand;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-
-import static java.lang.String.format;
+import oss.member.model.google.Recaptcha;
 
 /**
  * Created by jaceshim on 2017. 3. 22..
@@ -31,7 +38,28 @@ public class MemberService implements UserDetailsService {
 
 	@Autowired
 	MemberReadRepository memberReadRepository;
+	
+	@Autowired
+	RestTemplate restTemplate;
 
+	public Recaptcha token(String token) {
+        String url = "https://www.google.com/recaptcha/api/siteverify";
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        map.add("secret", "6LdZJuAZAAAAAKK6imuK_An_Z6Wfa2jli2wRJoRr");
+        map.add("response", token);
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+        Recaptcha response = restTemplate.postForObject( url, request, Recaptcha.class );
+        return response;
+    }
+	
 	/**
 	 * 회원 등록
 	 * @param memberCreateCommand

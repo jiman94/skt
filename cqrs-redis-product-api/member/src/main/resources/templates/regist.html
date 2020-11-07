@@ -79,6 +79,11 @@
 								<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your Password" required>
 							</div>
 						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-9">
+								<input type="hidden" id="recaptcha" name="recaptcha">
+							</div>
+						</div>
 						<div class="form-group last">
 							<div class="col-sm-offset-3 col-sm-9">
 								<button type="submit" class="btn btn-success btn-sm">등록</button>
@@ -90,13 +95,19 @@
 		</div>
 	</div>
 </div>
+<script src="https://www.google.com/recaptcha/api.js?render=6LdZJuAZAAAAAM6bUM1AkWXNwSIWs2-8lWF2DPx1"></script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function() {
-
+		grecaptcha.ready(function() {
+		  grecaptcha.execute('6LdZJuAZAAAAAM6bUM1AkWXNwSIWs2-8lWF2DPx1', {action: 'homepage'}).then(function(token) {
+		    // 토큰을 받아다가 recaptcha 에다가 값을 넣어줍니다.
+		    $("#recaptcha").val(token);
+		  });
+		});
 		$('form').submit(function() {
 			if ($('#password').val() !== $('#confirmPassword').val()) {
 				alert('비밀번호가 일치하지 않습니다');
@@ -108,7 +119,8 @@
 				"name": $("#name").val(),
 				"email": $("#email").val(),
 				"address": $("#address").val(),
-				"password": $("#password").val()
+				"password": $("#password").val(),
+				"recaptcha": $("#recaptcha").val()
 			}
 
 			$.ajax({
@@ -122,6 +134,10 @@
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
 					alert(textStatus);
+				 	grecaptcha.execute('6LdZJuAZAAAAAM6bUM1AkWXNwSIWs2-8lWF2DPx1', {action: 'homepage'}).then(function(token) {
+					    // 토큰을 받아다가 recaptcha 에다가 값을 넣어줍니다.
+					    $("#recaptcha").val(token);
+				    });
 				}
 			});
 

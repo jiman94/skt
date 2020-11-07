@@ -7,6 +7,7 @@ import oss.member.exception.InvalidRequestException;
 import oss.member.infra.read.MemberReadRepository;
 import oss.member.model.Member;
 import oss.member.model.command.MemberCommand;
+import oss.member.model.google.Recaptcha;
 import oss.member.service.MemberService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,11 @@ public class MemberController {
 
 	@RequestMapping(value = "/members", method = RequestMethod.PUT)
 	public ResponseEntity<Member> createMember(@RequestBody @Valid MemberCommand.CreateMember params, BindingResult bindingResult) {
+		Recaptcha rCapcha = memberService.token(params.getRecaptcha());
+		log.debug("{}",rCapcha);
+		if(rCapcha.getScore() < 0.5) 
+			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+			
 		if (bindingResult.hasErrors()) {
 			throw new InvalidRequestException("Invalid Parameter!", bindingResult);
 		}

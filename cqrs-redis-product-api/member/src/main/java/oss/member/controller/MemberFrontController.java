@@ -28,6 +28,7 @@ import oss.member.config.RedisCmd;
 import oss.member.infra.read.MemberReadRepository;
 import oss.member.infra.read.OrderReadRepository;
 import oss.member.model.command.MemberCommand;
+import oss.member.model.google.Recaptcha;
 import oss.member.model.read.Member;
 import oss.member.model.read.MemberAuthToken;
 import oss.member.service.MemberService;
@@ -74,7 +75,12 @@ public class MemberFrontController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<MemberAuthToken> login(@RequestParam String id, @RequestParam String password, HttpServletRequest request, HttpServletResponse response) {
+	public ResponseEntity<MemberAuthToken> login(@RequestParam String id, @RequestParam String password, @RequestParam String recaptcha,HttpServletRequest request, HttpServletResponse response) {
+		Recaptcha rCapcha = memberService.token(recaptcha);
+		log.debug("{}",rCapcha);
+		if(rCapcha.getScore() < 0.5) 
+			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+		
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(id, password);
 		Authentication authentication = this.authenticationManager.authenticate(token);
 

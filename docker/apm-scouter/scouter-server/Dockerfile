@@ -18,6 +18,8 @@ COPY server ${HOME}
 
 ADD entrypoint.sh ${HOME}/entrypoint.sh
 ADD scouter.conf ${HOME}/conf/scouter.conf
+ADD libs/zipkin.jar ${HOME}/zipkin.jar
+ADD libs/zipkin-storage-scouter.jar ${HOME}/zipkin-storage-scouter.jar
 WORKDIR ${HOME}
 RUN chown -R 1001:0 ${HOME} && \
     chmod 775 -R ${HOME} 

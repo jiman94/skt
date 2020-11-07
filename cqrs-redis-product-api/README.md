@@ -1,5 +1,10 @@
 # springcamp2017
 
+# google captcha
+- sitekey : 6LdZJuAZAAAAAM6bUM1AkWXNwSIWs2-8lWF2DPx1
+- scretkey : 6LdZJuAZAAAAAKK6imuK_An_Z6Wfa2jli2wRJoRr
+
+
 1. eventsourcing &amp; cqrs demo project
 
 

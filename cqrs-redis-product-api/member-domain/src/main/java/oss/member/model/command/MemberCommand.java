@@ -41,6 +41,8 @@ public final class MemberCommand implements Command {
 		@NotNull
 		@Size(min=5)
 		private String address;
+		
+		String recaptcha;
 
 		public CreateMember(String id, String name, String email, String password, String address) {
 			this.id = id;
