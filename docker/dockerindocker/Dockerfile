@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:jdk11
+FROM jenkins/jenkins:latest
 
 # Changing the user to root
 USER root
@@ -14,24 +14,29 @@ RUN apt-get update -y
 # open jdk 13
 RUN curl -O https://download.java.net/java/GA/jdk13/5b8a42f3905b406298b72d750b6919f6/33/GPL/openjdk-13_linux-x64_bin.tar.gz
 RUN tar xvf openjdk-13_linux-x64_bin.tar.gz
-RUN mv /opt/java/openjdk /opt/java/openjdk_backup
-RUN mv jdk-13 /opt/java/openjdk
 
-# Setup JAVA_HOME, this is useful for docker commandline
-#ENV JAVA_HOME /opt/java/openjdk 
-#RUN export JAVA_HOME
-
+RUN apt install vim
 # Install maven
-RUN apt-get -y update && apt-get install -y maven
+#RUN apt-get -y update && apt-get install -y maven
 
 # Install gradle
 RUN apt-get -y update && apt-get install -y gradle
 
+RUN add-apt-repository ppa:cwchien/gradle
+RUN apt -y install gradle
+# gradle -v 
+
+# RUN VERSION=6.5.1
+# RUN wget https://services.gradle.org/distributions/gradle-${VERSION}-bin.zip -P /tmp
+# RUN unzip -d /opt/gradle /tmp/gradle-${VERSION}-bin.zip
+# RUN ln -s /opt/gradle/gradle-${VERSION} /opt/gradle/latest
+
+
+# RUN apt install openjdk-11-jdk
+
 COPY docker_install.sh /docker_install.sh
 RUN chmod +x /docker_install.sh
 RUN /docker_install.sh
-
-# FROM openjdk:13-jdk
 
 #RUN usermod -aG docker jenkins
 #USER jenkins
