@@ -1,7 +1,5 @@
 FROM jenkins/jenkins:jdk11
 
-
-
 # Changing the user to root
 USER root
 ENV TZ=Asia/Seoul
