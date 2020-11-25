@@ -83,6 +83,21 @@ public class ProductController {
 		return result;
 		
 	}
+	
+	@PostMapping("/fileupload")
+	public ResponseEntity fileupload(
+			HttpServletRequest request, HttpServletResponse response
+			) {
+		MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+		Map<String, MultipartFile> files = multiRequest.getFileMap();
+		
+		int n_res = productService.file2S3(files);
+		ResponseEntity result = null;
+		if( n_res < 0) result = new ResponseEntity(HttpStatus.BAD_REQUEST);
+		
+		return result;
+		
+	}
 
 	@RequestMapping(value = "/products/{productId}", method = RequestMethod.POST, params = "type=changeName")
 	public ResponseEntity<Product> changeName(@PathVariable final Long productId,

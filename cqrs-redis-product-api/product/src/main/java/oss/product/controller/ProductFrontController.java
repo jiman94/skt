@@ -39,6 +39,15 @@ public class ProductFrontController {
 		return "setproducts";
 	}
 	
+	@RequestMapping(value = "/fileupload", method = RequestMethod.GET)
+	public String fileupload(Model model) {
+		final List<Product> products = productReadRepository.findAll();
+		model.addAttribute("products", products);
+
+		return "fileupload";
+	}
+	
+	
 	@RequestMapping(value = "/products", params = "type=createProduct", method = RequestMethod.GET)
 	public String createProduct(Model model) {
 		model.addAttribute("images", getImages());
