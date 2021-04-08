@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 import oss.core.event.AbstractEventProjector;
+import oss.member.config.RedisCmd;
 import oss.member.model.event.MemberCreated;
 import oss.member.model.event.MemberLogined;
 import oss.member.model.event.MemberPasswordChanged;
@@ -26,6 +27,9 @@ public class MemberEventProjector extends AbstractEventProjector {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private RedisCmd redisCmd;
 
 	/**
 	 * 상품주문 projection
@@ -109,19 +113,28 @@ public class MemberEventProjector extends AbstractEventProjector {
 	 * @param event
 	 */
 	public void execute(MemberCreated event) {
-		StringBuilder query = new StringBuilder();
-		query.append("INSERT INTO member (");
-		query.append(" id, name, email, password, address, created ");
-		query.append(") VALUES ( ");
-		query.append(" ?, ?, ?, ?, ?, ? ) ");
-
-		jdbcTemplate.update(query.toString(),
-			event.getId(),
-			event.getName(),
-			event.getEmail(),
-			event.getPassword(),
-			event.getAddress(),
-			convertLocalDateTimeToTimestamp(event.getCreated()));
+		//RedisHash 데이터 입력 방식 
+		if(redisCmd.hget("MEMBER", event.getId()) != null) {
+			log.debug("duplicate id E={}", event);
+			return;
+		};
+		
+		if(!redisCmd.hput("MEMBER", event.getId(), event)) {
+			log.warn("redis hput fail E={}", event);
+		};
+//		StringBuilder query = new StringBuilder();
+//		query.append("INSERT INTO member (");
+//		query.append(" id, name, email, password, address, created ");
+//		query.append(") VALUES ( ");
+//		query.append(" ?, ?, ?, ?, ?, ? ) ");
+//
+//		jdbcTemplate.update(query.toString(),
+//			event.getId(),
+//			event.getName(),
+//			event.getEmail(),
+//			event.getPassword(),
+//			event.getAddress(),
+//			convertLocalDateTimeToTimestamp(event.getCreated()));
 	}
 
 	/**

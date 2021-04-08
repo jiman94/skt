@@ -76,24 +76,26 @@ public class MemberFrontController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<MemberAuthToken> login(@RequestParam String id, @RequestParam String password, @RequestParam String recaptcha,HttpServletRequest request, HttpServletResponse response) {
-		Recaptcha rCapcha = memberService.token(recaptcha);
-		log.debug("{}",rCapcha);
-		if(rCapcha.getScore() < 0.5) 
-			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+		//TODO 캡차 주석처리
+//		Recaptcha rCapcha = memberService.token(recaptcha);
+//		log.debug("{}",rCapcha);
+//		if(rCapcha.getScore() < 0.5) 
+//			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(id, password);
 		Authentication authentication = this.authenticationManager.authenticate(token);
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
+		//TODO jwt 기반 변경 예
 //		HttpSession session = request.getSession(true);
 //		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
 //		session.setAttribute(LOGIN_MEMBER_SESSION_ID_KEY, authentication.getName());
 		
-		//TODO 아이디에 관련한 정보 없으면 넣기??
+		//TODO 임시 아이디에 관련한 정보 없으면 넣기??
 		redisCmd.hput(InfraConstants.USER_H_KEY, id, id);
 		Cookie c = new Cookie("SESSION", id);
-		c.setDomain("pilot.com");
+		c.setDomain("localhost");
 		c.setHttpOnly(true);
 		response.addCookie(c);
 

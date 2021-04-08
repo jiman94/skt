@@ -17,6 +17,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import oss.member.config.ModelMapperx;
+import oss.member.config.RedisCmd;
 import oss.member.exception.DuplicateMemberEmailException;
 import oss.member.exception.DuplicateMemberIdException;
 import oss.member.exception.NotExistsMemberException;
@@ -41,6 +43,12 @@ public class MemberService implements UserDetailsService {
 	
 	@Autowired
 	RestTemplate restTemplate;
+	
+	@Autowired
+	ModelMapperx modelMapperx;
+	
+	@Autowired
+	RedisCmd redisCmd;
 
 	public Recaptcha token(String token) {
         String url = "https://www.google.com/recaptcha/api/siteverify";
@@ -171,11 +179,16 @@ public class MemberService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-		oss.member.model.read.Member member = memberReadRepository.findAllById(id);
-		if (member == null) {
+		//jpa
+		//oss.member.model.read.Member member = memberReadRepository.findAllById(id);
+		
+		//redishash
+		Object obj = redisCmd.hget("MEMBER", id);
+		if (obj == null) {
 			throw new UsernameNotFoundException(format("{} is not found", id));
 		}
-
+		oss.member.model.read.Member member = modelMapperx.map(obj, oss.member.model.read.Member.class);
+		
 		return new LoginMemberDetails(member);
 	}
 }
