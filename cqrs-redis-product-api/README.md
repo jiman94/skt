@@ -1,9 +1,17 @@
-# springcamp2017
+# base springcamp2017
 
-# google captcha
-- sitekey : 6LdZJuAZAAAAAM6bUM1AkWXNwSIWs2-8lWF2DPx1
-- scretkey : 6LdZJuAZAAAAAKK6imuK_An_Z6Wfa2jli2wRJoRr
+# cqrs
+- data flow
+![data_flow](doc/md_images/data_flow.png "data_flow")
+- app flow
+![app_flow](doc/md_images/application_flowchart.png "app_flow")
+- redis eventstore
+![eventstore](doc/md_images/eventstore.png "eventstore")
+- redis datahash
+![datahash](doc/md_images/datahash.png "datahash")
 
+
+# google captchar3
 
 1. eventsourcing &amp; cqrs demo project
 
