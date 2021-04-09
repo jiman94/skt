@@ -1,6 +1,14 @@
 # base springcamp2017
 
+# skywalking 
+- member 에 적용
+- 구동 옵션
+``` command
+-javaagent:skywalking/skywalking-agent.jar
+```
+
 # cqrs
+- member 에 우선 적용
 - data flow
 ![data_flow](doc/md_images/data_flow.png "data_flow")
 - app flow
