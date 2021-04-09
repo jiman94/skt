@@ -98,8 +98,8 @@ subprojects {
 		implementation('org.springframework.boot:spring-boot-starter-web')
 		implementation('org.springframework.boot:spring-boot-starter-security')
 
-        implementation("org.springframework.cloud:spring-cloud-starter-zipkin:2.1.4.RELEASE")
-        implementation("org.springframework.cloud:spring-cloud-starter-sleuth:2.1.4.RELEASE")
+        //implementation("org.springframework.cloud:spring-cloud-starter-zipkin:2.1.4.RELEASE")
+        //simplementation("org.springframework.cloud:spring-cloud-starter-sleuth:2.1.4.RELEASE")
         
         
 		//compile('io.zipkin.brave:brave:5.12.6')
